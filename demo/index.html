@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <title>Vue.js App</title>
+  <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+  <div id="app">
+		<button @click="list.push(list.length+1)">追加</button>
+		<ul ref="list">
+			<li v-for="item in list">{{ item }}</li>
+		</ul>
+	</div>
+
+  <script src="./vue.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>
