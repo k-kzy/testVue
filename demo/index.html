@@ -7,12 +7,14 @@
 </head>
 <body>
   <div id="app">
-		<button @click="list.push(list.length+1)">追加</button>
-		<ul ref="list">
-			<li v-for="item in list">{{ item }}</li>
-		</ul>
-	</div>
 
+<button v-on:click="toggle=!toggle">切り替え</button>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <transition v-bind:css="false">
+    <my-circle v-bind:fill="fill" v-bind:key="fill"></my-circle>
+  </transition>
+</svg>
+	</div>
   <script src="./vue.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>

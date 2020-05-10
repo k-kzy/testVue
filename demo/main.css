@@ -1,7 +1,32 @@
-img {
+/* img {
 	opacity: 1;
 	transition: opacity 1s;
 }
 img.hide {
 	opacity: 0;
+}
+
+.v-enter-active, .v-leave-active, .v-move {
+  transition: opacity 1s, transform 1s;
+}
+
+.v-leave-active {
+  position: absolute;
+}
+
+.v-enter, .v-leave-to {
+  opacity: 0;
+} */
+
+.v-enter-active, .v-leave-active {
+  transition: all 1s;
+}
+
+.v-leave-active {
+  position: absolute;
+}
+
+.v-enter, .v-leave-to {
+  opacity: 0;
+  transform: translateX(-20px);
 }
