@@ -1,21 +1,20 @@
 <template>
   <div class="edit-form">
-    <input type="text" :value="message" @input="doUpdate">
+    <input v-model="message">
   </div>
 </template>
 
 <script>
+// eslint-disable-next-line
 import store from '@/store.js'
 export default {
   name: 'EditForm',
   computed: {
-    message () { return this.$store.getters.message }
-  },
-  methods: {
-    doUpdate (event) {
-      // input の値を持ってディスパッチ
+    message: {
       // eslint-disable-next-line
-      store.dispatch ('doUpdate', event.target.value)
+      get ()      { return this.$store.getters.message },
+      // eslint-disable-next-line
+      set (value) { this.$store.dispatch('doUpdate', value) }
     }
   }
 }
