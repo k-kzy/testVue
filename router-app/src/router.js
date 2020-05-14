@@ -1,33 +1,58 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-// ルート用のコンポーネントを読み込む
-import Home from '@/views/Home.vue'
-import Product from '@/views/Product.vue'
-import ProductList from '@/views/ProductList.vue'
+import Home from '@/views/Home'
+import ProductList from '@/views/ProductList' // 商品一覧
+import Product from '@/views/Product' // 商品情報（親ルート）
+// Productの子ルートたち
+import ProductHome from '@/views/Product/Home'
+import ProductReview from '@/views/Product/Review'
+import ProductReviewDetail from '@/views/Product/ReviewDetail'
 
-// Vuexと同様で最初にプラグインとして登録
 Vue.use(VueRouter)
 
-// VueRouterインスタンスを生成する
-export default new VueRouter({
-  // mode: 'history',
-  base: '/router-app/',
-  // URL のパスと紐づくコンポーネントをマッピング
+const router = new VueRouter({
   routes: [
     {
       path: '/',
       component: Home
     },
+    // 商品一覧ページ
     {
-      path: '/product', // IDが付いていないときはリストを表示
-      component: ProductList
+      path: '/product',
+      component: ProductList,
     },
+    // 商品情報ページ
     {
-      path: '/product/:id(\\d+)', // 「:id」がパラメータ 何が入ってもOK（数字のみマッチさせる正規表現）
+      path: '/product/:id',
       component: Product,
-      // 関数の場合第1引数として現在のルートオブジェクトが使用できる
-      props: route => ({ id: Number(route.params.id) })
+      props: route => ({
+        id: Number(route.params.id)
+      }),
+      children: [
+        // 商品詳細（デフォルトルート）
+        {
+          name: 'product-home',
+          path: '',
+          component: ProductHome
+        },
+        // 商品のレビュー一覧
+        {
+          name: 'product-review',
+          path: 'review',
+          component: ProductReview
+        },
+        // 商品のレビュー詳細
+        {
+          name: 'review-detail',
+          path: 'review/:rid', // 親ルートとかぶらないパラメータを指定
+          component: ProductReviewDetail,
+          props: route => ({
+            rid: Number(route.params.rid)
+          })
+        }
+      ]
     }
   ]
 })
+export default router

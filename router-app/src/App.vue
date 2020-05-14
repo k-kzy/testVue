@@ -13,7 +13,22 @@
 </script>
 
 <style>
+/* ナビゲーション */
+nav {
+    display: flex;
+    align-items: center;
+    background: #222;
+}
+nav a {
+    display: block;
+    padding: 0.5em;
+    color: #eee;
+    line-height: 1em;
+    text-decoration: none;
+}
+
+/* アクティブなリンク */
 .router-link-active {
-  background-color: #e25193;
+    background: palevioletred;
 }
 </style>
