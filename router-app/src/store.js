@@ -1,13 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import product from '@/store/product.js'
-import review from '@/store/review.js'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   modules: {
-    product,
-    review // モジュールをストアルートに登録
+    product
   },
   strict: true,
   state: {
