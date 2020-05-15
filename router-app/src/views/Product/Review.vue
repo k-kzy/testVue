@@ -3,7 +3,7 @@
     <h1>レビュー一覧</h1>
     <ul>
       <li v-for="{ rid, name } in list" :key="rid">
-        <router-link :to="`/product/${ id }/review/${ rid }`">{{ name }}</router-link>
+        <router-link :to="`review/${ rid }`">{{ name }}</router-link>
       </li>
     </ul>
   </div>

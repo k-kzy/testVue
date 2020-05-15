@@ -1,32 +1,38 @@
 <template>
-  <div class="product" v-if="item" key="product">
+  <div class="review" v-if="item" key="review">
     <h1>商品情報</h1>
-    <dl class="product-table">
-      <dt>レビュー名</dt><dd>{{ item.name }}</dd>
-      <dt>レビュー値</dt><dd>{{ item.price }}</dd>
-      <dt>レビュー詳細</dt><dd>{{ item.content }}</dd>
+    <dl class="review-table">
+      <dt>商品名</dt>
+      <dd>{{ item.name }}</dd>
+      <dt>価格</dt>
+      <dd>{{ item.price }}円</dd>
+      <dt>商品説明</dt>
+      <dd>{{ item.content }}</dd>
     </dl>
   </div>
-  <div v-else key="loading">商品情報を読み込んでいます…</div>
+  <div v-else key="loading">商品情報を読み込んでいます...</div>
 </template>
 
 <script>
-import reviews from '@/api/reviews.js'
-export default {
-  props: { rid: Number },
-  data() {
-    return {
-      item: null
-    }
-  },
-  watch: {
-    rid: {
-      handler() {
-        products.asyncFind(this.rid, item => {
-          this.item = item
-        })
-      }, immediate: true
+  import reviews from '@/api/reviews.js'
+  export default {
+    props: {
+      rid: Number
+    },
+    data() {
+      return {
+        item: null
+      }
+    },
+    watch: {
+      rid: {
+        handler() {
+          reviews.asyncFind(this.rid, item => {
+            this.item = item
+          })
+        },
+        immediate: true
+      }
     }
   }
-}
 </script>
