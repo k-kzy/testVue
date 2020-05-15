@@ -40,7 +40,11 @@ const router = new VueRouter({
         {
           name: 'product-review',
           path: 'review',
-          component: ProductReview
+          component: ProductReview,
+          beforeEnter(to, from, next) {
+            console.log('route:beforeEnter')
+            next()
+          }
         },
         // 商品のレビュー詳細
         {
